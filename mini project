@@ -1,0 +1,73 @@
+# Step 1: Define Functions
+
+# Display List Function
+def display_list(todo_list):
+    if not todo_list:
+        print("Your to-do list is empty.")
+    else:
+        print("To-Do List:")
+        for index, task in enumerate(todo_list, start=1):
+            print(f"{index}. {task}")
+
+# Add Task Function
+def add_task(todo_list, task):
+    todo_list.append(task)
+    print(f"Task '{task}' has been added to the to-do list.")
+
+# Remove Task Function
+def remove_task(todo_list, task_index):
+    if 1 <= task_index <= len(todo_list):
+        removed_task = todo_list.pop(task_index - 1)
+        print(f"Task '{removed_task}' has been removed from the to-do list.")
+    else:
+        print("Invalid task index. Please provide a valid index.")
+
+# Step 2: Implement the Main Function
+
+def main():
+    todo_list = []  # Initialize an empty to-do list
+
+    while True:
+        # Display menu
+        print("\nMenu:")
+        print("1. Display To-Do List")
+        print("2. Add Task")
+        print("3. Remove Task")
+        print("4. Quit")
+
+        choice = input("Enter your choice (1/2/3/4): ")
+
+        if choice == "1":
+            display_list(todo_list)
+        elif choice == "2":
+            task = input("Enter the task to add: ")
+            add_task(todo_list, task)
+        elif choice == "3":
+            try:
+                task_index = int(input("Enter the task index to remove: "))
+                remove_task(todo_list, task_index)
+            except ValueError:
+                print("Invalid input. Please enter a valid task index.")
+        elif choice == "4":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please select a valid option.")
+
+# Step 3: Testing
+if __name__ == "__main__":
+    # Display To-Do List
+    sample_todo_list = ["Task 1", "Task 2", "Task 3"]
+    display_list(sample_todo_list)
+
+    # Add Task
+    add_task(sample_todo_list, "Task 4")
+    display_list(sample_todo_list)
+
+    # Remove Task
+    remove_task(sample_todo_list, 2)
+    display_list(sample_todo_list)
+
+# Step 4: Run and Debug
+if __name__ == "__main__":
+    main()
